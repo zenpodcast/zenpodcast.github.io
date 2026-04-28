@@ -1,2 +1,90 @@
-<!-- placeholder -->
- Coming soon!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZEN Podcast — Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .logo-wrap img {
+      width: 320px;
+      height: 320px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .text-block {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .coming-soon {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(72px, 14vw, 140px);
+      color: #fff;
+      letter-spacing: 0.06em;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .coming-soon span {
+      display: block;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: rgba(139,175,110,0.6);
+      margin: 28px auto;
+    }
+
+    .tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 100;
+      font-size: clamp(20px, 1.4vw, 14px);
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo-wrap">
+    <img src="imgs/ZENpodcast_logo.png" alt="ZEN Podcast Logo">
+  </div>
+
+  <div class="text-block">
+    <p class="coming-soon">
+      <span>Coming</span>
+      <span>Soon</span>
+    </p>
+    <div class="divider"></div>
+    <p class="tagline">Curiosity meets science</p>
+  </div>
+
+</body>
+</html>
