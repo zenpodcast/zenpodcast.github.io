@@ -3,88 +3,874 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZEN Podcast — Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
+  <title>ZEN Podcast</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --green: #8BAF6E;
+      --green-dim: rgba(139,175,110,0.5);
+      --green-faint: rgba(139,175,110,0.12);
+      --white: #fff;
+      --off-white: rgba(255,255,255,0.75);
+      --muted: rgba(255,255,255,0.38);
+      --very-muted: rgba(255,255,255,0.12);
     }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: #000;
-      overflow: hidden;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
+      background: #000;
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--very-muted);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 22px;
+      letter-spacing: 0.18em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0;
+      list-style: none;
+    }
+
+    .nav-tabs li button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 200;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 22px;
+      height: 64px;
+      position: relative;
+      transition: color 0.25s;
+    }
+
+    .nav-tabs li button::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 22px;
+      right: 22px;
+      height: 1px;
+      background: var(--green);
+      transform: scaleX(0);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .nav-tabs li button:hover { color: var(--off-white); }
+    .nav-tabs li button.active { color: var(--white); }
+    .nav-tabs li button.active::after { transform: scaleX(1); }
+
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+
+    .btn-follow {
+      background: none;
+      border: 1px solid var(--green-dim);
+      color: var(--green);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn-follow:hover { background: var(--green); color: #000; }
+
+    /* ── HERO ── */
+    .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .logo-wrap img {
-      width: 300px;
-      height: 300px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .text-block {
+      padding: 80px 24px 64px;
       text-align: center;
-      margin-top: 28px;
+      border-bottom: 1px solid var(--very-muted);
     }
 
-    .coming-soon {
+    .hero-logo {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 36px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 200;
-      font-size: clamp(60px, 10vw, 110px);
-      color: #fff;
-      letter-spacing: 0.06em;
-      line-height: 0.9;
+      font-weight: 300;
+      font-size: clamp(44px, 7vw, 88px);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      line-height: 0.9;
+      animation: fadeUp 0.8s 0.1s ease both;
     }
 
-    .coming-soon span {
-      display: block;
-    }
-
-    .divider {
-      width: 60px;
+    .hero-divider {
+      width: 48px;
       height: 1px;
-      background: rgba(139,175,110,0.6);
-      margin: 28px auto;
+      background: var(--green-dim);
+      margin: 32px auto;
+      animation: fadeUp 0.8s 0.2s ease both;
     }
 
-    .tagline {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 100;
-      font-size: clamp(20px, 1.4vw, 14px);
-      color: rgba(255,255,255,0.35);
+    .hero-tagline {
+      font-weight: 200;
+      font-size: 14px;
       letter-spacing: 0.45em;
       text-transform: uppercase;
+      color: var(--muted);
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-meta {
+      font-weight: 200;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-top: 16px;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+
+    /* ── CONTENT AREA ── */
+    .content-area {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 120px;
+    }
+
+    .tab-panel { display: none; animation: fadeUp 0.5s ease both; }
+    .tab-panel.active { display: block; }
+
+    /* ── SECTION HEADING ── */
+    .section-label {
+      font-weight: 100;
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0.06em;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--very-muted);
+    }
+
+    /* ── EPISODES ── */
+    .episode-list { display: flex; flex-direction: column; gap: 0; }
+
+    .episode {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--very-muted);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .episode:hover { background: var(--green-faint); padding-left: 12px; padding-right: 12px; margin: 0 -12px; border-radius: 4px; }
+
+    .ep-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 32px;
+      color: var(--green-dim);
+      min-width: 48px;
+      line-height: 1;
+      padding-top: 4px;
+    }
+
+    .ep-info { flex: 1; }
+
+    .ep-meta {
+      font-size: 10px;
+      font-weight: 200;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .ep-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(18px, 2.5vw, 22px);
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+      color: var(--off-white);
+    }
+
+    .ep-desc {
+      font-size: 12px;
+      font-weight: 200;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .ep-duration {
+      font-size: 11px;
+      font-weight: 200;
+      letter-spacing: 0.15em;
+      color: var(--green-dim);
+      margin-top: 12px;
+    }
+
+    .play-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--green-dim);
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .play-btn:hover { background: var(--green); border-color: var(--green); }
+    .play-btn:hover svg path, .play-btn:hover svg rect { fill: #000; }
+
+    .play-btn svg { width: 14px; height: 14px; margin-left: 2px; }
+    .play-btn svg path, .play-btn svg rect { fill: var(--green); transition: fill 0.25s; }
+
+    /* ── WAVEFORM PLAYER ── */
+    .waveform-wrap {
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .waveform-canvas {
+      width: 100%;
+      height: 56px;
+      display: block;
+      cursor: pointer;
+    }
+
+    .waveform-time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .waveform-status {
+      font-size: 10px;
+      font-weight: 200;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .waveform-wrap.waveform-error .waveform-canvas { opacity: 0.3; }
+
+    /* ── CONTRIBUTORS ── */
+    .contributors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 32px;
+    }
+
+    .contributor-card {
+      padding: 28px 24px;
+      border: 1px solid var(--very-muted);
+      transition: border-color 0.3s;
+    }
+
+    .contributor-card:hover { border-color: var(--green-dim); }
+
+    .contributor-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--green-faint);
+      border: 1px solid var(--green-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--green);
+    }
+
+    .contributor-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .contributor-role {
+      font-size: 10px;
+      font-weight: 200;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 14px;
+    }
+
+    .contributor-bio {
+      font-size: 12px;
+      font-weight: 200;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    /* ── ABOUT ── */
+    .about-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    @media (max-width: 600px) {
+      .about-body { grid-template-columns: 1fr; gap: 40px; }
+      nav { padding: 0 20px; }
+      .nav-logo-text { display: none; }
+    }
+
+    .about-text p {
+      font-size: 14px;
+      font-weight: 200;
+      line-height: 2;
+      color: var(--off-white);
+      margin-bottom: 20px;
+    }
+
+    .about-text p:first-child::first-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      line-height: 1;
+      float: left;
+      margin: 4px 12px 0 0;
+      color: var(--green);
+    }
+
+    .about-aside {}
+
+    .about-fact {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--very-muted);
+    }
+
+    .about-fact:first-child { border-top: 1px solid var(--very-muted); }
+
+    .about-fact-label {
+      font-size: 10px;
+      font-weight: 200;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .about-fact-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .social-link {
+      font-size: 10px;
+      font-weight: 200;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 10px 18px;
+      border: 1px solid var(--very-muted);
+      transition: border-color 0.25s, color 0.25s;
+    }
+
+    .social-link:hover { border-color: var(--green-dim); color: var(--green); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <div class="logo-wrap">
-    <img src="imgs/ZENpodcast_logo.png" alt="ZEN Podcast Logo">
+  <nav>
+    <a class="nav-logo" href="#" onclick="showTab('episodes'); return false;">
+      <img src="imgs/ZENpodcast_logo.png" alt="ZEN Podcast">
+      <span class="nav-logo-text">ZEN</span>
+    </a>
+
+    <ul class="nav-tabs">
+      <li><button class="active" onclick="showTab('episodes')">Episodes</button></li>
+      <li><button onclick="showTab('contributors')">Contributors</button></li>
+      <li><button onclick="showTab('about')">About</button></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-follow">+ Follow</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <img class="hero-logo" src="imgs/ZENpodcast_logo.png" alt="ZEN Podcast Logo">
+    <h1 class="hero-title">ZEN Podcast</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Curiosity meets science</p>
+    <!--<p class="hero-meta">Since 2026 &nbsp;·&nbsp; New episodes almost weekly</p>-->
+    <p class="hero-meta">Since 2026</p>
   </div>
 
-  <div class="text-block">
-    <p class="coming-soon">
-      <span>Coming</span>
-      <span>Soon</span>
-    </p>
-    <div class="divider"></div>
-    <p class="tagline">Curiosity meets science</p>
+  <div class="content-area">
+
+    <!-- EPISODES -->
+    <div id="tab-episodes" class="tab-panel active">
+      <p class="section-label">Latest episodes</p>
+      <h2 class="section-title">Episodes</h2>
+
+      <div class="episode-list">
+
+        <!--<div class="episode">
+          <span class="ep-number">03</span>
+          <div class="ep-info">
+            <div class="ep-meta">May 2026 &nbsp;·&nbsp; Season 1, Ep. 1</div>
+            <div class="ep-title">The Neuroscience of Stillness</div>
+            <div class="ep-desc">What happens inside the brain when we stop? We speak with a cognitive neuroscientist about default mode networks, the science of silence, and why rest is anything but passive.</div>
+            <div class="ep-duration">48:12</div>
+          </div>
+          <button class="play-btn" aria-label="Play">
+            <svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 7L1 13V1Z"/></svg>
+          </button>
+        </div>-->
+
+        <!--<div class="episode">
+          <span class="ep-number">01</span>
+          <div class="ep-info">
+            <div class="ep-meta">May 2026 &nbsp;·&nbsp; Season 1, Ep. 1</div>
+            <div class="ep-title">Breath as Data — The Biometrics of Calm</div>
+            <div class="ep-desc">From ancient pranayama to wearable biosensors, we trace how breath became both metaphor and measurement in the modern pursuit of wellbeing.</div>
+            <div class="ep-duration">41:05</div>
+          </div>
+          <button class="play-btn" aria-label="Play">
+            <svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 7L1 13V1Z"/></svg>
+          </button>
+        </div>-->
+
+        <div class="episode" data-audio="audio/s01e01.mp3">
+          <span class="ep-number">01</span>
+          <div class="ep-info">
+            <div class="ep-meta">May 2026 &nbsp;·&nbsp; Season 1, Ep. 1</div>
+            <div class="ep-title">Introduction: Why do we sleep?</div>
+            <div class="ep-desc">We begin with fundamental questions about sleep 
+              Our guest, Dr Markus Schmidt shares his journey as a clinician and researcher.</div>
+            <div class="ep-duration">36:28</div>
+            <div class="waveform-wrap">
+              <canvas class="waveform-canvas"></canvas>
+              <div class="waveform-time">
+                <span class="wf-current">0:00</span>
+                <span class="wf-status waveform-status">Loading waveform…</span>
+                <span class="wf-total">0:00</span>
+              </div>
+            </div>
+          </div>
+          <button class="play-btn" aria-label="Play">
+            <svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 7L1 13V1Z"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CONTRIBUTORS -->
+    <div id="tab-contributors" class="tab-panel">
+      <p class="section-label">The Team</p>
+      <h2 class="section-title">Contributors</h2>
+
+      <div class="contributors-grid">
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Simone Bellini</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Hugo Gillet</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Anna Muraveva</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Enrique Perez Martinez</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Erica Pedron</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Alexia Duriez</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Hannah Portmann</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Alexia Duriez</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Dr Cloé L'Heraux</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Dr Shani Folschweiller</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
+          <div class="contributor-name">Dr Magdalena Kachlicka</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="tab-about" class="tab-panel">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">About ZEN Podcast</h2>
+
+      <div class="about-body">
+        <div class="about-text">
+          <p>ZEN Podcast. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum tempus aliquam. Etiam bibendum rhoncus quam vel maximus. Duis auctor rhoncus dolor, in convallis neque egestas in. Donec et vehicula purus. Integer vulputate porttitor elementum. Curabitur fringilla hendrerit ligula, sit amet suscipit quam interdum et. Pellentesque mattis tortor nec dui vulputate, id rhoncus sem sagittis.</p>
+          <p>Fusce mollis leo sem, a hendrerit urna scelerisque non. Fusce ac porta leo. Cras in convallis tortor, ac imperdiet enim. Vestibulum vitae dictum libero, ac accumsan diam. Vivamus ut lacinia ipsum. Maecenas eget libero tincidunt, efficitur purus a, feugiat libero.</p>
+          <div class="social-links">
+            <a class="social-link" href="#">Spotify</a>
+            <a class="social-link" href="#">Apple</a>
+            <a class="social-link" href="#">RSS</a>
+          </div>
+        </div>
+
+        <div class="about-aside">
+          <div class="about-fact">
+            <div class="about-fact-label">Founded</div>
+            <div class="about-fact-value">2026</div>
+          </div>
+          <div class="about-fact">
+            <div class="about-fact-label">Episodes</div>
+            <div class="about-fact-value">1 &amp; growing</div>
+          </div>
+          <div class="about-fact">
+            <div class="about-fact-label">Cadence</div>
+            <div class="about-fact-value">Almost weekly</div>
+          </div>
+          <div class="about-fact">
+            <div class="about-fact-label">Format</div>
+            <div class="about-fact-value">Questions + answers</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
+
+  <script>
+    function showTab(name) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      const idx = ['episodes','contributors','about'].indexOf(name);
+      document.querySelectorAll('.nav-tabs button')[idx].classList.add('active');
+    }
+
+    /* ── WAVEFORM AUDIO PLAYER ──
+       Generates the waveform client-side from the audio file itself
+       (via Web Audio API decodeAudioData) as it loads — no pre-rendered
+       waveform image or data is used. */
+    class WaveformPlayer {
+      constructor(episodeEl) {
+        this.el = episodeEl;
+        this.src = episodeEl.dataset.audio;
+        this.canvas = episodeEl.querySelector('.waveform-canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.playBtn = episodeEl.querySelector('.play-btn');
+        this.currentLabel = episodeEl.querySelector('.wf-current');
+        this.totalLabel = episodeEl.querySelector('.wf-total');
+        this.statusLabel = episodeEl.querySelector('.wf-status');
+        this.audio = new Audio();
+        this.audio.preload = 'metadata';
+        this.audio.src = this.src;
+        this.peaks = null;
+        this.isPlaying = false;
+        this.rafId = null;
+        this.bind();
+        this.resize();
+        this.generateWaveform();
+      }
+
+      bind() {
+        window.addEventListener('resize', () => { this.resize(); this.render(); });
+
+        this.canvas.addEventListener('click', (e) => {
+          if (!this.audio.duration) return;
+          const rect = this.canvas.getBoundingClientRect();
+          const ratio = (e.clientX - rect.left) / rect.width;
+          this.audio.currentTime = Math.max(0, Math.min(1, ratio)) * this.audio.duration;
+          this.render();
+        });
+
+        this.playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.toggle();
+        });
+
+        this.audio.addEventListener('loadedmetadata', () => {
+          this.totalLabel.textContent = this.formatTime(this.audio.duration);
+        });
+
+        this.audio.addEventListener('timeupdate', () => {
+          this.currentLabel.textContent = this.formatTime(this.audio.currentTime);
+          this.render();
+        });
+
+        this.audio.addEventListener('ended', () => {
+          this.isPlaying = false;
+          this.setPlayIcon(false);
+          this.stopLoop();
+        });
+
+        this.audio.addEventListener('error', () => {
+          this.statusLabel.textContent = 'Audio unavailable';
+        });
+      }
+
+      resize() {
+        const rect = this.canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        this.canvas.width = Math.max(1, rect.width * dpr);
+        this.canvas.height = Math.max(1, rect.height * dpr);
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      async generateWaveform() {
+        try {
+          const response = await fetch(this.src);
+          if (!response.ok) throw new Error('fetch failed');
+          const arrayBuffer = await response.arrayBuffer();
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          const audioCtx = new AudioContextClass();
+          const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+          this.peaks = this.extractPeaks(audioBuffer, 240);
+          audioCtx.close();
+          this.statusLabel.textContent = '';
+          this.render();
+        } catch (err) {
+          console.error('Waveform generation failed:', err);
+          this.statusLabel.textContent = 'Waveform unavailable';
+          this.el.querySelector('.waveform-wrap').classList.add('waveform-error');
+        }
+      }
+
+      extractPeaks(audioBuffer, numBars) {
+        const channelData = audioBuffer.getChannelData(0);
+        const blockSize = Math.max(1, Math.floor(channelData.length / numBars));
+        const peaks = [];
+        for (let i = 0; i < numBars; i++) {
+          const start = i * blockSize;
+          let max = 0;
+          for (let j = 0; j < blockSize; j++) {
+            const sample = channelData[start + j];
+            if (sample !== undefined) {
+              const abs = Math.abs(sample);
+              if (abs > max) max = abs;
+            }
+          }
+          peaks.push(max);
+        }
+        const peakMax = Math.max(...peaks, 0.01);
+        return peaks.map(p => p / peakMax);
+      }
+
+      render() {
+        if (!this.peaks) return;
+        const rect = this.canvas.getBoundingClientRect();
+        const w = rect.width;
+        const h = rect.height;
+        const ctx = this.ctx;
+        ctx.clearRect(0, 0, w, h);
+
+        const barGap = 2;
+        const barWidth = w / this.peaks.length;
+        const progress = this.audio.duration ? this.audio.currentTime / this.audio.duration : 0;
+        const progressX = progress * w;
+
+        this.peaks.forEach((p, i) => {
+          const x = i * barWidth;
+          const barH = Math.max(2, p * h);
+          const y = (h - barH) / 2;
+          ctx.fillStyle = x < progressX
+            ? 'rgba(139, 175, 110, 0.95)'
+            : 'rgba(255, 255, 255, 0.16)';
+          ctx.fillRect(x, y, Math.max(1, barWidth - barGap), barH);
+        });
+
+        if (this.audio.duration) {
+          ctx.strokeStyle = '#8BAF6E';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(progressX, 0);
+          ctx.lineTo(progressX, h);
+          ctx.stroke();
+        }
+      }
+
+      toggle() {
+        if (this.isPlaying) {
+          this.audio.pause();
+          this.isPlaying = false;
+          this.setPlayIcon(false);
+          this.stopLoop();
+        } else {
+          this.audio.play().catch(err => console.error('Playback failed:', err));
+          this.isPlaying = true;
+          this.setPlayIcon(true);
+          this.startLoop();
+        }
+      }
+
+      startLoop() {
+        const step = () => {
+          this.render();
+          this.rafId = requestAnimationFrame(step);
+        };
+        this.rafId = requestAnimationFrame(step);
+      }
+
+      stopLoop() {
+        if (this.rafId) {
+          cancelAnimationFrame(this.rafId);
+          this.rafId = null;
+        }
+      }
+
+      setPlayIcon(playing) {
+        const svg = this.playBtn.querySelector('svg');
+        if (playing) {
+          svg.innerHTML = '<rect x="1" y="1" width="4" height="12"/><rect x="7" y="1" width="4" height="12"/>';
+        } else {
+          svg.innerHTML = '<path d="M1 1L11 7L1 13V1Z"/>';
+        }
+      }
+
+      formatTime(seconds) {
+        if (!isFinite(seconds)) return '0:00';
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.episode[data-audio]').forEach(ep => new WaveformPlayer(ep));
+    });
+  </script>
 
 </body>
 </html>
