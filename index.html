@@ -11,8 +11,8 @@
       --green-dim: rgba(139,175,110,0.5);
       --green-faint: rgba(139,175,110,0.12);
       --white: #fff;
-      --off-white: rgba(255,255,255,0.75);
-      --muted: rgba(255,255,255,0.38);
+      --off-white: rgba(255,255,255,0.88);
+      --muted: rgba(255,255,255,0.58);
       --very-muted: rgba(255,255,255,0.12);
     }
 
@@ -75,7 +75,7 @@
       border: none;
       cursor: pointer;
       font-family: 'Montserrat', sans-serif;
-      font-weight: 200;
+      font-weight: 300;
       font-size: 11px;
       letter-spacing: 0.35em;
       text-transform: uppercase;
@@ -156,7 +156,7 @@
     }
 
     .hero-tagline {
-      font-weight: 200;
+      font-weight: 300;
       font-size: 14px;
       letter-spacing: 0.45em;
       text-transform: uppercase;
@@ -165,7 +165,7 @@
     }
 
     .hero-meta {
-      font-weight: 200;
+      font-weight: 300;
       font-size: 11px;
       letter-spacing: 0.18em;
       color: var(--muted);
@@ -185,7 +185,7 @@
 
     /* ── SECTION HEADING ── */
     .section-label {
-      font-weight: 100;
+      font-weight: 200;
       font-size: 10px;
       letter-spacing: 0.5em;
       text-transform: uppercase;
@@ -232,7 +232,7 @@
 
     .ep-meta {
       font-size: 10px;
-      font-weight: 200;
+      font-weight: 300;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--muted);
@@ -250,14 +250,14 @@
 
     .ep-desc {
       font-size: 12px;
-      font-weight: 200;
+      font-weight: 300;
       line-height: 1.8;
       color: var(--muted);
     }
 
     .ep-duration {
       font-size: 11px;
-      font-weight: 200;
+      font-weight: 300;
       letter-spacing: 0.15em;
       color: var(--green-dim);
       margin-top: 12px;
@@ -301,7 +301,7 @@
       display: flex;
       justify-content: space-between;
       font-size: 10px;
-      font-weight: 200;
+      font-weight: 300;
       letter-spacing: 0.1em;
       color: var(--muted);
       margin-top: 6px;
@@ -309,7 +309,7 @@
 
     .waveform-status {
       font-size: 10px;
-      font-weight: 200;
+      font-weight: 300;
       letter-spacing: 0.15em;
       color: var(--muted);
       text-transform: uppercase;
@@ -358,7 +358,7 @@
 
     .contributor-role {
       font-size: 10px;
-      font-weight: 200;
+      font-weight: 300;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--green);
@@ -367,7 +367,7 @@
 
     .contributor-bio {
       font-size: 12px;
-      font-weight: 200;
+      font-weight: 300;
       line-height: 1.8;
       color: var(--muted);
     }
@@ -388,7 +388,7 @@
 
     .about-text p {
       font-size: 14px;
-      font-weight: 200;
+      font-weight: 300;
       line-height: 2;
       color: var(--off-white);
       margin-bottom: 20px;
@@ -414,7 +414,7 @@
 
     .about-fact-label {
       font-size: 10px;
-      font-weight: 200;
+      font-weight: 300;
       letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--muted);
@@ -437,7 +437,7 @@
 
     .social-link {
       font-size: 10px;
-      font-weight: 200;
+      font-weight: 300;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--muted);
@@ -523,9 +523,8 @@
           <span class="ep-number">01</span>
           <div class="ep-info">
             <div class="ep-meta">May 2026 &nbsp;·&nbsp; Season 1, Ep. 1</div>
-            <div class="ep-title">Introduction: Why do we sleep?</div>
-            <div class="ep-desc">We begin with fundamental questions about sleep 
-              Our guest, Dr Markus Schmidt shares his journey as a clinician and researcher.</div>
+            <div class="ep-title">The Birth of New Neurons</div>
+            <div class="ep-desc">In this episode of the Zen Podcast, hosts Erika and Cloe sit down with <a href="https://www.bordeaux-neurocampus.fr/staff/nora-abrous/">Prof Nora Abrous</a>, Research Director at the Neurocentre Magendie in Bordeaux, France, to explore adult neurogenesis, the brain's remarkable ability to generate new neurons throughout life. Nora shares the winding path that led her from dopaminergic transplant research to becoming a pioneer in brain plasticity, including the early skepticism she faced and what kept her motivated. Tune in for this great conversation about scientific curiosity, resilience, and what neurogenesis might reveal about the human brain..</div>
             <div class="ep-duration">36:28</div>
             <div class="waveform-wrap">
               <canvas class="waveform-canvas"></canvas>
@@ -553,6 +552,13 @@
 
         <div class="contributor-card">
           <div class="contributor-avatar"></div>
+          <div class="contributor-name">Anna Muraveva</div>
+          <div class="contributor-role">Function1 &amp; Function2</div>
+          <div class="contributor-bio">One sentence bio.</div>
+        </div>
+
+        <div class="contributor-card">
+          <div class="contributor-avatar"></div>
           <div class="contributor-name">Simone Bellini</div>
           <div class="contributor-role">Function1 &amp; Function2</div>
           <div class="contributor-bio">One sentence bio.</div>
@@ -561,13 +567,6 @@
         <div class="contributor-card">
           <div class="contributor-avatar"></div>
           <div class="contributor-name">Hugo Gillet</div>
-          <div class="contributor-role">Function1 &amp; Function2</div>
-          <div class="contributor-bio">One sentence bio.</div>
-        </div>
-
-        <div class="contributor-card">
-          <div class="contributor-avatar"></div>
-          <div class="contributor-name">Anna Muraveva</div>
           <div class="contributor-role">Function1 &amp; Function2</div>
           <div class="contributor-bio">One sentence bio.</div>
         </div>
